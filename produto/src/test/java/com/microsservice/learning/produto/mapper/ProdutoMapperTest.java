@@ -3,7 +3,6 @@ package com.microsservice.learning.produto.mapper;
 import com.microsservice.learning.produto.builder.ProdutoBuilder;
 import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
-import com.microsservice.learning.produto.service.mapper.DozerMapper;
 import com.microsservice.learning.produto.service.mapper.ProdutoMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

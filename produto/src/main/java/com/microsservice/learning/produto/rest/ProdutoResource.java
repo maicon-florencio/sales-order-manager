@@ -5,6 +5,7 @@ import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ProdutoResource {
         return ResponseEntity.ok(produtoService.save(pDTO));
     }
     @GetMapping("/{id}")
+    @Transactional(readOnly = true)
     public ResponseEntity<ProdutoDTO> buscarProdutoId(@PathVariable("id") Long id){
         return ResponseEntity.ok(produtoService.getById(id));
     }
@@ -36,6 +38,7 @@ public class ProdutoResource {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping
+    @Transactional(readOnly = true)
     public ResponseEntity<List<ProdutoDTO>> buscarTodosProdutos(){
         return ResponseEntity.ok(produtoService.listAll());
     }
