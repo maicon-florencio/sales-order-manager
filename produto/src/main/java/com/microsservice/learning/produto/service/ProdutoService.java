@@ -4,6 +4,7 @@ import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProdutoService {
 

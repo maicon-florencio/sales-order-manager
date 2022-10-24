@@ -1,45 +1,66 @@
 package com.microsservice.learning.produto.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsservice.learning.produto.builder.ProdutoBuilder;
-import com.microsservice.learning.produto.service.mapper.ProdutoMapper;
+import com.microsservice.learning.produto.service.ProdutoService;
+import com.microsservice.learning.produto.service.dto.ProdutoDTO;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@SpringBootTest
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
+
+@ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
+@WebMvcTest
 @AutoConfigureMockMvc
 public class ProdutoResourceTest {
 
-    final String API =  "/api/produtcs";
+    private final String API ="/api/products";
     @Autowired
-    private ProdutoBuilder produtoBuilder;
-    @Autowired
-    MockMvc mock;
+    MockMvc mockMvc;
 
+    @MockBean
+    private ProdutoService produtoService;
 
-    private ProdutoMapper mapper;
+    private  ProdutoBuilder produtoBuilder;
+    @BeforeEach
+    public void setUp(){
+        produtoBuilder = new ProdutoBuilder();
+    }
 
     @Test
-    public void saveNovoProdutoSucesso() throws Exception {
-    var pDTO = produtoBuilder.criarProdutoNovo();
-    String jsonTest = new ObjectMapper().writeValueAsString(pDTO);
+    @DisplayName("buscar produto por ID")
+    public void findProductsById() throws Exception {
 
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(API)
-                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(jsonTest);
+        var pDTO = produtoBuilder.criarProdutoDTO(1L);
+     BDDMockito.given(produtoService.getById(1L)).willReturn(pDTO);
 
-         mock.perform(request).andExpect(MockMvcResultMatchers.status().isCreated())
-                 .andExpect(MockMvcResultMatchers.jsonPath("id").isNotEmpty())
-                 .andExpect(MockMvcResultMatchers.jsonPath("nome").value(pDTO.getName()));
+     var request = MockMvcRequestBuilders.get(API.concat("/" + 1L)).accept(MediaType.APPLICATION_JSON);
+
+     mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk())
+             .andExpect(MockMvcResultMatchers.jsonPath("id").value(pDTO.getId()))
+             .andExpect(jsonPath("name").value(pDTO.getName()))
+             .andExpect(jsonPath("desc").value(pDTO.getDesc()))
+             .andExpect(jsonPath("price").value(pDTO.getPrice()))
+             .andExpect(jsonPath("quantity").value(pDTO.getQuantity()));
+
+
     }
+
+
 
 
 }

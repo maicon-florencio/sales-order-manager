@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -47,7 +48,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public void delete(Long id) {
         var pDto = getById(Objects.requireNonNull(id));
-        if(pDto == null)
+        if(Objects.isNull(pDto))
           throw new BussinessException(" Não exists Produto");
 
         produtoDAO.delete(produtoMapper.toEntity(pDto));
