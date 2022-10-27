@@ -42,7 +42,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoDTO getById(Long id) {
-        return produtoMapper.toDTO(produtoDAO.getById(id));
+        var dtoEncontrado = produtoMapper.toDTO(produtoDAO.getById(id));
+        if(dtoEncontrado == null) throw new IllegalArgumentException("Produto não encontrado");
+        return dtoEncontrado;
+
     }
 
     @Override
