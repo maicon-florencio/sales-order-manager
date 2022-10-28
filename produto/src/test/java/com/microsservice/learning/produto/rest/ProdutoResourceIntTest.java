@@ -102,5 +102,34 @@ public class ProdutoResourceIntTest {
 
     }
 
+    @Test
+    void atualizarProduto() throws Exception {
+
+        var pdtCriado = produtoBuilder.criarProdutoDTO(1L);
+
+        var pDTOu = produtoBuilder.criarProdutoDTO(1L);
+
+        pDTOu.setDesc("Nova direcao");
+
+        Mockito.when(produtoService.save(Mockito.any(ProdutoDTO.class))).thenReturn(pDTOu);
+
+        var request = MockMvcRequestBuilders
+                .put(API)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(pdtCriado) )
+                .accept(MediaType.APPLICATION_JSON);
+
+
+        mockMvc.perform(request)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").isNotEmpty())
+                .andExpect(jsonPath("name").value(pdtCriado.getName()))
+                .andExpect(jsonPath("desc").value("Nova direcao"));
+
+
+
+    }
+
 
 }
