@@ -24,14 +24,22 @@ public class ProdutoBuilder {
                 .price(17.15)
                 .build();
     }
+    public ProdutoDTO criarProdutoDTONovo(){
+        return ProdutoDTO.builder()
+                .name("Baby beef")
+                .desc("250g angus beefs com bacon")
+                .quantity(1)
+                .price(69.90)
+                .build();
+    }
 
     public ProdutoDTO criarProdutoDTO(Long id){
         return ProdutoDTO.builder()
                 .id(id)
-                .name("Potato Chips")
-                .desc("150g potato with bacon and cheddar")
+                .name("Baby beef")
+                .desc("250g angus beefs com bacon")
                 .quantity(1)
-                .price(17.15)
+                .price(69.90)
                 .build();
     }
 

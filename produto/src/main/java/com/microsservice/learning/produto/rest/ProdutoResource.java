@@ -35,8 +35,9 @@ public class ProdutoResource {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Long id){
+    public ResponseEntity<ProdutoDTO> delete(@PathVariable("id") Long id){
        produtoService.delete(id);
+       return ResponseEntity.noContent().build();
     }
     @GetMapping
     public ResponseEntity<List<ProdutoDTO>> buscarTodosProdutos(){
