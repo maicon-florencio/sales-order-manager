@@ -7,6 +7,7 @@ import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.service.ProdutoService;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -58,6 +59,7 @@ public class ProdutoResourceIntTest {
     }
 
     @Test
+    @DisplayName("Teste para buscar um produto com ID especifico")
     void buscarProdutos() throws Exception {
         var prod = produtoBuilder.criarProdutoDTO(1L);
         List<ProdutoDTO> pDTOs = Arrays.asList(prod);
@@ -77,6 +79,7 @@ public class ProdutoResourceIntTest {
     }
 
     @Test
+    @DisplayName("Teste para cadastrar um novo produto")
     void cadastrarUmProduto() throws Exception {
         var pdto= produtoBuilder.criarProdutoDTONovo();
 
