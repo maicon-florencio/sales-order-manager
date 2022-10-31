@@ -1,27 +1,22 @@
 package com.microsservice.learning.produto.rest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsservice.learning.produto.builder.ProdutoBuilder;
-import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.service.ProdutoService;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -41,7 +36,7 @@ public class ProdutoResourceIntTest {
 
     @Test
     void buscarProdutoPorId() throws Exception {
-        var prod = produtoBuilder.criarProdutoDTO(1l);
+        var prod = produtoBuilder.criarProdutoDTO(1L);
 
         Mockito.when(produtoService.getById(1L)).thenReturn(prod);
 
@@ -62,7 +57,7 @@ public class ProdutoResourceIntTest {
     @DisplayName("Teste para buscar um produto com ID especifico")
     void buscarProdutos() throws Exception {
         var prod = produtoBuilder.criarProdutoDTO(1L);
-        List<ProdutoDTO> pDTOs = Arrays.asList(prod);
+        List<ProdutoDTO> pDTOs = Collections.singletonList(prod);
         Mockito.when(produtoService.listAll()).thenReturn(pDTOs);
 
         var request = MockMvcRequestBuilders
@@ -74,7 +69,7 @@ public class ProdutoResourceIntTest {
 
 
        Assertions.assertTrue(pDTOs.size() > 0);
-       Assertions.assertTrue(pDTOs.get(0).getName().equals(prod.getName()));
+        Assertions.assertEquals(pDTOs.get(0).getName(), prod.getName());
 
     }
 
@@ -101,7 +96,7 @@ public class ProdutoResourceIntTest {
                 .andExpect(jsonPath("name").value(pdtCriado.getName()))
                 .andExpect(jsonPath("price").value(pdtCriado.getPrice()));
 
-        Assertions.assertTrue(pdtCriado.getName().equals(pdto.getName()));
+        Assertions.assertEquals(pdtCriado.getName(), pdto.getName());
 
     }
 
