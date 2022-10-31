@@ -15,5 +15,4 @@ public class ProdutoDTO implements Serializable {
     private String name;
     private String desc;
     private double price;
-    private int quantity;
 }

@@ -12,7 +12,6 @@ public class ProdutoBuilder {
                 .id(id)
                 .name("Potato Chips")
                 .desc("150g potato with bacon and cheddar")
-                .quantity(1)
                 .price(17.15)
                 .build();
     }
@@ -20,7 +19,6 @@ public class ProdutoBuilder {
         return Produto.builder()
                 .name("Potato Chips")
                 .desc("150g potato with bacon and cheddar")
-                .quantity(1)
                 .price(17.15)
                 .build();
     }
@@ -28,7 +26,6 @@ public class ProdutoBuilder {
         return ProdutoDTO.builder()
                 .name("Baby beef")
                 .desc("250g angus beefs com bacon")
-                .quantity(1)
                 .price(69.90)
                 .build();
     }
@@ -38,7 +35,6 @@ public class ProdutoBuilder {
                 .id(id)
                 .name("Baby beef")
                 .desc("250g angus beefs com bacon")
-                .quantity(1)
                 .price(69.90)
                 .build();
     }
