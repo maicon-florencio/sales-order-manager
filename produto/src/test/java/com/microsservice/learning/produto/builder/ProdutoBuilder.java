@@ -5,6 +5,8 @@ import com.microsservice.learning.produto.dominio.enun.StatusProdutoEnum;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class ProdutoBuilder {
 
@@ -14,6 +16,7 @@ public class ProdutoBuilder {
                 .name("Potato Chips")
                 .desc("Pizza peperone")
                 .price(17.15)
+                .dtVencimento(LocalDate.now())
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -22,6 +25,7 @@ public class ProdutoBuilder {
                 .name("Potato Chips")
                 .price(17.15)
                 .desc("Pizza peperone")
+                .dtVencimento(LocalDate.now())
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -30,6 +34,7 @@ public class ProdutoBuilder {
                 .name("Baby beef")
                 .price(69.90)
                 .desc("sanduiche de atum")
+                .dtVencimento(LocalDate.now())
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -40,6 +45,7 @@ public class ProdutoBuilder {
                 .name("Baby beef")
                 .price(69.90)
                 .desc("sanduiche de atum")
+                .dtVencimento(LocalDate.now())
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
