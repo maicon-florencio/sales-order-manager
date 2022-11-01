@@ -12,6 +12,7 @@ public class ProdutoBuilder {
         return Produto.builder()
                 .id(id)
                 .name("Potato Chips")
+                .desc("Pizza peperone")
                 .price(17.15)
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
@@ -20,6 +21,7 @@ public class ProdutoBuilder {
         return Produto.builder()
                 .name("Potato Chips")
                 .price(17.15)
+                .desc("Pizza peperone")
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -27,6 +29,7 @@ public class ProdutoBuilder {
         return ProdutoDTO.builder()
                 .name("Baby beef")
                 .price(69.90)
+                .desc("sanduiche de atum")
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -36,6 +39,7 @@ public class ProdutoBuilder {
                 .id(id)
                 .name("Baby beef")
                 .price(69.90)
+                .desc("sanduiche de atum")
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }

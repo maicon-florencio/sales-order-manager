@@ -13,6 +13,7 @@ public class ProdutoDTO implements Serializable {
 
     private Long id;
     private String name;
+    private String desc;
     private double price;
     private String statusProduto;
 }

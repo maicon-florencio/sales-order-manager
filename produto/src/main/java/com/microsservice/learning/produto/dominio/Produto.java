@@ -18,6 +18,7 @@ public class Produto implements Serializable {
     private Long id;
     private String name;
     private double price;
+    private String desc;
     private String statusP;
 
 }
