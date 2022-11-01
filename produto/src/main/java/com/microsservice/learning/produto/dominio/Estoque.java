@@ -5,28 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Calendar;
 
+@Entity
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@Entity
-public class Produto implements Serializable {
+public class Estoque implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id_estoque")
     private Long id;
-    private String name;
-    private double price;
-    private String desc;
-    private String statusP;
 
-    @Temporal(TemporalType.DATE)
-    private Calendar dtVencimento;
 
 }
+
