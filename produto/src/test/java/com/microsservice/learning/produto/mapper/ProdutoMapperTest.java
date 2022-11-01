@@ -33,7 +33,23 @@ public class ProdutoMapperTest {
         Produto p = mapper.toEntity(pDTO);
 
         Assertions.assertEquals(1L,pDTO.getId());
-        Assertions.assertEquals("Potato Chips",pDTO.getName());
+        Assertions.assertEquals("Baby beef",pDTO.getName());
+    }
+    @Test
+    public void conversaoListDTOtoListEntoty(){
+        var  listProd = mapper.toEntitys(produtoBuilder.listaProdutoDTONew());
+
+        Assertions.assertEquals(produtoBuilder.listaProdutoDTONew().size(), listProd.size());
+        Assertions.assertTrue(listProd.stream().anyMatch(p -> p.getName().equals("Kibi Charque")));
+
+    }
+  @Test
+    public void conversaoListPordtoListDTO(){
+        var  listProd = mapper.toDtos(produtoBuilder.listaProdutoNew());
+
+        Assertions.assertEquals(produtoBuilder.listaProdutoDTONew().size(), listProd.size());
+        Assertions.assertTrue(listProd.stream().anyMatch(p -> p.getName().equals("Kibi Charque")));
+
     }
 
 

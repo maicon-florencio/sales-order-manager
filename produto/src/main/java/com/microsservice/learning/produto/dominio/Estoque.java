@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +20,14 @@ public class Estoque implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estoque")
     private Long id;
+    @Column(name = "qt_prod_estoque")
+    private Integer quantidadeProdutoEstoque;
+    @Column(name = "status_permissao_venda")
+    private String statusPermissaoVenda;
+
+
+    @OneToMany(mappedBy ="estoque", cascade = CascadeType.ALL)
+    private List<Produto> produtos;
 
 
 }

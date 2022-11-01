@@ -26,6 +26,10 @@ public class Produto implements Serializable {
     private String desc;
     private String statusP;
 
+    @ManyToOne
+    @JoinColumn(name = "id_estoque")
+    private Estoque estoque;
+
     @Temporal(TemporalType.DATE)
     private Calendar dtVencimento;
 
