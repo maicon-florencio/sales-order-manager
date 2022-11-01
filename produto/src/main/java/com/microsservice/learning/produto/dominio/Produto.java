@@ -2,6 +2,8 @@ package com.microsservice.learning.produto.dominio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +12,7 @@ import org.apache.tomcat.jni.Local;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +26,8 @@ public class Produto implements Serializable {
     private double price;
     private String desc;
     private String statusP;
-    private LocalDate dtVencimento;
+
+    @Temporal(TemporalType.DATE)
+    private Calendar dtVencimento;
 
 }

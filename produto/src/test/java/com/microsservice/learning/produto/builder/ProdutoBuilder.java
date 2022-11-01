@@ -6,6 +6,7 @@ import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 @Component
 public class ProdutoBuilder {
@@ -16,7 +17,7 @@ public class ProdutoBuilder {
                 .name("Potato Chips")
                 .desc("Pizza peperone")
                 .price(17.15)
-                .dtVencimento(LocalDate.now())
+                .dtVencimento(Calendar.getInstance())
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -25,7 +26,7 @@ public class ProdutoBuilder {
                 .name("Potato Chips")
                 .price(17.15)
                 .desc("Pizza peperone")
-                .dtVencimento(LocalDate.now())
+                .dtVencimento(Calendar.getInstance())
                 .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -34,7 +35,7 @@ public class ProdutoBuilder {
                 .name("Baby beef")
                 .price(69.90)
                 .desc("sanduiche de atum")
-                .dtVencimento(LocalDate.now())
+                .dtVencimento(Calendar.getInstance())
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
@@ -45,7 +46,7 @@ public class ProdutoBuilder {
                 .name("Baby beef")
                 .price(69.90)
                 .desc("sanduiche de atum")
-                .dtVencimento(LocalDate.now())
+                .dtVencimento(Calendar.getInstance())
                 .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }

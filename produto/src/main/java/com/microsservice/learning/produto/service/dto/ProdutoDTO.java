@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 @Getter
 @Setter
@@ -17,5 +18,5 @@ public class ProdutoDTO implements Serializable {
     private String desc;
     private double price;
     private String statusProduto;
-    private LocalDate dtVencimento;
+    private Calendar dtVencimento;
 }
