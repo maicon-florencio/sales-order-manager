@@ -1,6 +1,7 @@
 package com.microsservice.learning.produto.builder;
 
 import com.microsservice.learning.produto.dominio.Produto;
+import com.microsservice.learning.produto.dominio.enun.StatusProdutoEnum;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.stereotype.Component;
 
@@ -11,22 +12,22 @@ public class ProdutoBuilder {
         return Produto.builder()
                 .id(id)
                 .name("Potato Chips")
-                .desc("150g potato with bacon and cheddar")
                 .price(17.15)
+                .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
     public Produto criarProdutoNovo(){
         return Produto.builder()
                 .name("Potato Chips")
-                .desc("150g potato with bacon and cheddar")
                 .price(17.15)
+                .statusP(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
     public ProdutoDTO criarProdutoDTONovo(){
         return ProdutoDTO.builder()
                 .name("Baby beef")
-                .desc("250g angus beefs com bacon")
                 .price(69.90)
+                .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
 
@@ -34,8 +35,8 @@ public class ProdutoBuilder {
         return ProdutoDTO.builder()
                 .id(id)
                 .name("Baby beef")
-                .desc("250g angus beefs com bacon")
                 .price(69.90)
+                .statusProduto(StatusProdutoEnum.APROVADO.getNomeTipo())
                 .build();
     }
 

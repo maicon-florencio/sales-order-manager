@@ -2,16 +2,18 @@ package com.microsservice.learning.produto.dominio.enun;
 
 import java.io.Serializable;
 
-public enum StatusProdutoEstoqueEnum implements Serializable {
+public enum StatusProdutoEnum implements Serializable {
 
-    AGUARDANDO_APROVACAO("aguardando aprovacao", 1),
-    APROVADO("Aprovado", 2),
-    NAO_APROVADO("Nao Aprovado", 3);
+    AGUARDANDO_APROVACAO("AGUARDANDO_APROVACAO", 1),
+    APROVADO("APROVADO", 2),
+    NAO_APROVADO("NAO_APROVADO", 3),
+    ATIVO("ATIVO",4),
+    DESATIVADO("DESATIVADO",5);
 
     private String nomeTipo;
     private Integer codeTipo;
 
-    StatusProdutoEstoqueEnum(String tipo, Integer code){
+    StatusProdutoEnum(String tipo, Integer code){
         this.nomeTipo= tipo;
         this.codeTipo =code;
     }
