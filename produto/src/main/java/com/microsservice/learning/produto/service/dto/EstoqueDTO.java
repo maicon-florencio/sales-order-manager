@@ -19,5 +19,5 @@ public class EstoqueDTO implements Serializable {
     private Long id;
     private Integer quantidadeProdutoEstoque;
     private String statusPermissaoVenda;
-    private List<Produto> produtos;
+    private List<Produto> produtosOrder;
 }

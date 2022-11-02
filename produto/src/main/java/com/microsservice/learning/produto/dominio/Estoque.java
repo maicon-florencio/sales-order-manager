@@ -25,7 +25,6 @@ public class Estoque implements Serializable {
     @Column(name = "status_permissao_venda")
     private String statusPermissaoVenda;
 
-
     @OneToMany(mappedBy ="estoque", cascade = CascadeType.ALL)
     private List<Produto> produtos;
 

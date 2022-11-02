@@ -5,13 +5,9 @@ import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-import javax.xml.transform.Source;
-import java.lang.annotation.Target;
 import java.util.List;
-import java.util.Optional;
 
 @Mapper(componentModel = "spring",uses = {})
 public interface ProdutoMapper {

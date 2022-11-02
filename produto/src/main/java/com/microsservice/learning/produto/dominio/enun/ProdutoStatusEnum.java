@@ -2,7 +2,7 @@ package com.microsservice.learning.produto.dominio.enun;
 
 import java.io.Serializable;
 
-public enum StatusProdutoEnum implements Serializable {
+public enum ProdutoStatusEnum implements Serializable {
 
     AGUARDANDO_APROVACAO("AGUARDANDO_APROVACAO", 1),
     APROVADO("APROVADO", 2),
@@ -13,7 +13,7 @@ public enum StatusProdutoEnum implements Serializable {
     private String nomeTipo;
     private Integer codeTipo;
 
-    StatusProdutoEnum(String tipo, Integer code){
+    ProdutoStatusEnum(String tipo, Integer code){
         this.nomeTipo= tipo;
         this.codeTipo =code;
     }
