@@ -18,7 +18,6 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     private EstoqueMapper estoqueMapper;
 
-
     @Override
     public EstoqueDTO save(EstoqueDTO dto) {
         if(Objects.isNull(dto))
@@ -41,7 +40,9 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public void delete(Long id) {
-
+        var dtoFind = getById(id);
+        if (Objects.isNull(dtoFind)) throw  new BussinessException("Estoque não encontrado");
+        estoqueRepository.delete(estoqueMapper.dtoToEntity(dtoFind));
     }
 
     @Override
