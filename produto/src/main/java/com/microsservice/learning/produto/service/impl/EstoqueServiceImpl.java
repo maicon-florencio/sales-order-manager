@@ -23,8 +23,8 @@ public class EstoqueServiceImpl implements EstoqueService {
     public EstoqueDTO save(EstoqueDTO dto) {
         if(Objects.isNull(dto))
             throw new BussinessException("resource is not found");
-
-        return null;
+        var responseDTO = estoqueRepository.save(estoqueMapper.dtoToEntity(dto));
+        return estoqueMapper.entityToDTO(responseDTO);
     }
 
     @Override
