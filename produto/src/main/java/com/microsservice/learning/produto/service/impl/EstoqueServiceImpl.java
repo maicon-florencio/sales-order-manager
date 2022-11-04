@@ -5,7 +5,6 @@ import com.microsservice.learning.produto.service.EstoqueService;
 import com.microsservice.learning.produto.service.dto.EstoqueDTO;
 import com.microsservice.learning.produto.service.mapper.EstoqueMapper;
 import com.microsservice.learning.produto.service.repository.EstoqueRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +12,15 @@ import java.util.Objects;
 
 @Service
 public class EstoqueServiceImpl implements EstoqueService {
-    @Autowired
-    private EstoqueRepository estoqueRepository;
 
-    private EstoqueMapper estoqueMapper;
+    private final EstoqueRepository estoqueRepository;
+
+    private final EstoqueMapper estoqueMapper;
+
+    public EstoqueServiceImpl(EstoqueRepository estoqueRepository, EstoqueMapper estoqueMapper) {
+        this.estoqueRepository = estoqueRepository;
+        this.estoqueMapper = estoqueMapper;
+    }
 
     @Override
     public EstoqueDTO save(EstoqueDTO dto) {
@@ -28,7 +32,10 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public EstoqueDTO udpate(EstoqueDTO dto) {
-        return null;
+        if(Boolean.FALSE.equals(existEstoque(dto.getId()))) throw new BussinessException("Resource not found");
+
+        var estoque = estoqueRepository.save(estoqueMapper.dtoToEntity(dto));
+        return estoqueMapper.entityToDTO(estoque);
     }
 
     @Override

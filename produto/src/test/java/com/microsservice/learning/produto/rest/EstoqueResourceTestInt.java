@@ -1,7 +1,9 @@
 package com.microsservice.learning.produto.rest;
 
 import com.microsservice.learning.produto.builder.EstoqueBuilder;
+import com.microsservice.learning.produto.dominio.Estoque;
 import com.microsservice.learning.produto.service.EstoqueService;
+import com.microsservice.learning.produto.service.dto.EstoqueDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -12,6 +14,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -52,6 +58,23 @@ public class EstoqueResourceTestInt {
                 .andExpect(jsonPath("statusPermissaoVenda").value(dto.getStatusPermissaoVenda()));
 
         Assertions.assertEquals(1L, dto.getId());
+    }
+
+    @Test
+    public  void buscarEstoqueTodos() throws Exception {
+        var dto = Collections.singletonList(estoqueBuilder.novoEstoqueDTOComProduto());
+
+        Mockito.when(estoqueService.listAll()).thenReturn(dto);
+
+
+        var request = MockMvcRequestBuilders
+                .get(API).accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request)
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        Assertions.assertTrue(dto.size() > 0);
     }
 
 }

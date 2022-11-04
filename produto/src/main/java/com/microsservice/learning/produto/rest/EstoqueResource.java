@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/estoque")
 public class EstoqueResource {
@@ -21,5 +23,9 @@ public class EstoqueResource {
         return ResponseEntity.ok(estoqueService.getById(id));
     }
 
+    @GetMapping()
+    public ResponseEntity<List<EstoqueDTO>> buscarAll(){
+        return ResponseEntity.ok(estoqueService.listAll());
+    }
 
 }
