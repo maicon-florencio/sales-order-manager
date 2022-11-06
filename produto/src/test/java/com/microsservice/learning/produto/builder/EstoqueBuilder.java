@@ -36,6 +36,15 @@ public class EstoqueBuilder {
                 .build();
     }
 
+    public EstoqueDTO novoEstoqueDTOComProdutoPorId(Long id){
+        return EstoqueDTO.builder()
+                .id(id)
+                .quantidadeProdutoEstoque(157)
+                .statusPermissaoVenda(ProdutoStatusVendaEnum.ATIVO.getStatus())
+                .produtosOrder(produtoBuilder.listaProdutoNew())
+                .build();
+    }
+
     public List<EstoqueDTO> listaEstoqueDTOs(){
       var dto1=  EstoqueDTO.builder()
               .id(1L)

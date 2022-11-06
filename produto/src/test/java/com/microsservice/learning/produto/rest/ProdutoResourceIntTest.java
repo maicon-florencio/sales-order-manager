@@ -114,7 +114,7 @@ public class ProdutoResourceIntTest {
         var request = MockMvcRequestBuilders
                 .put(API)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(pdtCriado) )
+                .content(new ObjectMapper().writeValueAsString(pDTOu) )
                 .accept(MediaType.APPLICATION_JSON);
 
 

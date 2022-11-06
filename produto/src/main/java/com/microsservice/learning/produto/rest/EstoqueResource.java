@@ -33,4 +33,14 @@ public class EstoqueResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping
+    public ResponseEntity<EstoqueDTO> save(@RequestBody  EstoqueDTO dto){
+        return new ResponseEntity<>(estoqueService.save(dto), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<EstoqueDTO> atualizar(@RequestBody  EstoqueDTO dto){
+        return new ResponseEntity<>(estoqueService.udpate(dto), HttpStatus.OK);
+    }
+
 }
