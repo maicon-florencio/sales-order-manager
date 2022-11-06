@@ -77,4 +77,16 @@ public class EstoqueResourceTestInt {
         Assertions.assertTrue(dto.size() > 0);
     }
 
+    @Test
+    public void deletarUmEstoque() throws Exception {
+
+        var request = MockMvcRequestBuilders
+                .delete(API.concat("/"+1)).accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request)
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+    }
+
 }
