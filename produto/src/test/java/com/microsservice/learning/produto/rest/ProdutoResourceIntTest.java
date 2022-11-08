@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -69,6 +72,31 @@ public class ProdutoResourceIntTest {
 
 
        Assertions.assertTrue(pDTOs.size() > 0);
+        Assertions.assertEquals(pDTOs.get(0).getName(), prod.getName());
+
+    }
+
+    @Test
+    @DisplayName("Buscando produtos com limite de paginacao")
+    void buscarProdutosPorPaginacao() throws Exception {
+        var prod = produtoBuilder.criarProdutoDTO(1L);
+        List<ProdutoDTO> pDTOs = Collections.singletonList(prod);
+
+        Mockito.when(produtoService.listPagina(Mockito.any(Pageable.class)))
+                .thenReturn(new PageImpl<ProdutoDTO>(pDTOs, PageRequest.of(0,100),1));
+
+        var request = MockMvcRequestBuilders
+                .get(API.concat("/busca-paginada?page=0&size=100")).accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("totalElements").value(1))
+                .andExpect(jsonPath("pageable.pageSize").value(100))
+                .andExpect(jsonPath("pageable.pageNumber").value(0));
+
+
+        Assertions.assertTrue(pDTOs.size() > 0);
         Assertions.assertEquals(pDTOs.get(0).getName(), prod.getName());
 
     }

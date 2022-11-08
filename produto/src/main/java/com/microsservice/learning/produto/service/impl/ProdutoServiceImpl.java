@@ -6,6 +6,8 @@ import com.microsservice.learning.produto.service.ProdutoService;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import com.microsservice.learning.produto.service.mapper.ProdutoMapper;
 import com.microsservice.learning.produto.service.repository.ProdutoRespository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,6 +62,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public List<ProdutoDTO> listAll() {
         return produtoMapper.toDtos(produtoDAO.findAll());
+    }
+
+    @Override
+    public Page<ProdutoDTO> listPagina(Pageable paginacao) {
+        return produtoDAO.findAll(paginacao).map(produtoMapper::toDTO);
     }
 
     private boolean existsProduto(Produto produto){

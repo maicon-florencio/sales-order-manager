@@ -1,10 +1,10 @@
 package com.microsservice.learning.produto.service;
 
-import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProdutoService {
 
@@ -14,5 +14,7 @@ public interface ProdutoService {
     void delete(Long id);
 
     List<ProdutoDTO> listAll();
+
+    Page<ProdutoDTO> listPagina(Pageable paginacao);
 
 }

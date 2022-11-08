@@ -3,6 +3,8 @@ package com.microsservice.learning.produto.rest;
 import com.microsservice.learning.produto.service.ProdutoService;
 import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +44,11 @@ public class ProdutoResource {
     @GetMapping
     public ResponseEntity<List<ProdutoDTO>> buscarTodosProdutos(){
         return ResponseEntity.ok(produtoService.listAll());
+    }
+
+    @GetMapping("/busca-paginada")
+    public ResponseEntity<Page<ProdutoDTO>> buscarTodosPordutosPaginados(Pageable filtroPagina){
+        return ResponseEntity.ok(produtoService.listPagina(filtroPagina));
     }
 
 
