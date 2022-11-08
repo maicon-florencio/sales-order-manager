@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Calendar;
 
 @Data
@@ -16,21 +14,21 @@ import java.util.Calendar;
 @Builder
 @AllArgsConstructor
 @Entity
+@Table(name = "TB_PRODUTO")
 public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
     private String name;
-    private double price;
-    private String desc;
+    private float price;
+    private String description;
     private String statusP;
 
-    @ManyToOne
-    @JoinColumn(name = "id_estoque")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "estoque_id",referencedColumnName = "id")
     private Estoque estoque;
 
-    @Temporal(TemporalType.DATE)
     private Calendar dtVencimento;
 
 }

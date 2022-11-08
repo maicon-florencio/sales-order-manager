@@ -14,18 +14,19 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@Table(name = "TB_ESTOQUE")
 public class Estoque implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_estoque")
+    @Column(name = "id")
     private Long id;
     @Column(name = "qt_prod_estoque")
     private Integer quantidadeProdutoEstoque;
     @Column(name = "status_permissao_venda")
     private String statusPermissaoVenda;
 
-    @OneToMany(mappedBy ="estoque", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="estoque")
     private List<Produto> produtos;
 
 

@@ -17,7 +17,7 @@ public class ProdutoDTO implements Serializable {
     private Long id;
     private String name;
     private String desc;
-    private double price;
+    private float price;
     private String statusProduto;
     private Estoque estoque;
     private Calendar dtVencimento;
