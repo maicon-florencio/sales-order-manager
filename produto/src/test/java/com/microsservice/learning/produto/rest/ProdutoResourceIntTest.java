@@ -71,7 +71,7 @@ public class ProdutoResourceIntTest {
                 .andExpect(status().isOk());
 
 
-       Assertions.assertTrue(pDTOs.size() > 0);
+       Assertions.assertNotNull(pDTOs);
         Assertions.assertEquals(pDTOs.get(0).getName(), prod.getName());
 
     }
@@ -83,7 +83,7 @@ public class ProdutoResourceIntTest {
         List<ProdutoDTO> pDTOs = Collections.singletonList(prod);
 
         Mockito.when(produtoService.listPagina(Mockito.any(Pageable.class)))
-                .thenReturn(new PageImpl<ProdutoDTO>(pDTOs, PageRequest.of(0,100),1));
+                .thenReturn(new PageImpl<>(pDTOs, PageRequest.of(0,100),1));
 
         var request = MockMvcRequestBuilders
                 .get(API.concat("/busca-paginada?page=0&size=100")).accept(MediaType.APPLICATION_JSON);
@@ -96,7 +96,7 @@ public class ProdutoResourceIntTest {
                 .andExpect(jsonPath("pageable.pageNumber").value(0));
 
 
-        Assertions.assertTrue(pDTOs.size() > 0);
+        Assertions.assertNotNull(pDTOs);
         Assertions.assertEquals(pDTOs.get(0).getName(), prod.getName());
 
     }
