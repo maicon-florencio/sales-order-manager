@@ -10,18 +10,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoRespository produtoDAO;
-    private ProdutoMapper produtoMapper;
 
-    public ProdutoServiceImpl(ProdutoRespository produtoDAO) {
+    private final ProdutoMapper produtoMapper;
+
+    public ProdutoServiceImpl(ProdutoRespository produtoDAO, ProdutoMapper produtoMapper) {
         this.produtoDAO = produtoDAO;
+        this.produtoMapper = produtoMapper;
     }
 
 
@@ -61,7 +63,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<ProdutoDTO> listAll() {
-        return produtoMapper.toDtos(produtoDAO.findAll());
+        List<Produto> produtos = produtoDAO.findAll();
+        if(produtos.isEmpty())
+            produtos = Arrays.asList(new Produto());
+        return produtoMapper.toDtos(produtos);
     }
 
     @Override
