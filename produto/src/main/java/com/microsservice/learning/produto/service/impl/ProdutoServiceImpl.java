@@ -63,10 +63,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<ProdutoDTO> listAll() {
-        List<Produto> produtos = produtoDAO.findAll();
-        if(produtos.isEmpty())
-            produtos = Arrays.asList(new Produto());
-        return produtoMapper.toDtos(produtos);
+        return produtoMapper.toDtos(produtoDAO.findAll());
     }
 
     @Override
