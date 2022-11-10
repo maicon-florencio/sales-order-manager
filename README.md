@@ -13,3 +13,7 @@ Unit Test with Junit and Mockito.
 Java version 17
 Model mapper entity MapStruct.
 
+port
+
+produto-service
+8000 - 8100
