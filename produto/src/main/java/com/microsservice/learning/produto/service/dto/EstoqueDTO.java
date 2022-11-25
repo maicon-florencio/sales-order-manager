@@ -1,9 +1,6 @@
 package com.microsservice.learning.produto.service.dto;
 
 import com.microsservice.learning.produto.dominio.Produto;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,5 +16,6 @@ public class EstoqueDTO implements Serializable {
     private Long id;
     private Integer quantidadeProdutoEstoque;
     private String statusPermissaoVenda;
+    private String nomeLocalEstoque;
     private List<Produto> produtosOrder;
 }

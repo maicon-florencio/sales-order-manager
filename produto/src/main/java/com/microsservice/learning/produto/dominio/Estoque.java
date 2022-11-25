@@ -25,6 +25,8 @@ public class Estoque implements Serializable {
     private Integer quantidadeProdutoEstoque;
     @Column(name = "status_permissao_venda")
     private String statusPermissaoVenda;
+    @Column(name = "nm_local_estoque")
+    private String nomeLocalEstoque;
 
     @OneToMany(mappedBy ="estoque")
     private List<Produto> produtos;
