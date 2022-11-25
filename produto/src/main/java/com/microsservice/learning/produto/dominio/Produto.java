@@ -25,7 +25,7 @@ public class Produto implements Serializable {
     private String description;
     private String statusP;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "estoque_id",referencedColumnName = "id")
     private Estoque estoque;
 

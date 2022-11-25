@@ -24,6 +24,7 @@
 		<lombok.version>1.18.20</lombok.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<maven-compile-plugin.version>3.8.1</maven-compile-plugin.version>
+		<flyway.version>9.0.2</flyway.version>
 	</properties>
 
 	<dependencyManagement>
@@ -59,6 +60,13 @@
 				<version>${spring-boot.version}</version>
 				<scope>test</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flyway.version}</version>
+			</dependency>
+
 
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
