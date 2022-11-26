@@ -26,7 +26,7 @@ public class Produto implements Serializable {
     private String description;
     private String statusP;
     @JsonIgnore
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "estoque_id",referencedColumnName = "id")
     private Estoque estoque;
 

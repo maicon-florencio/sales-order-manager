@@ -6,11 +6,13 @@ import com.microsservice.learning.produto.service.dto.EstoqueDTO;
 import com.microsservice.learning.produto.service.mapper.EstoqueMapper;
 import com.microsservice.learning.produto.service.repository.EstoqueRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Transactional
 public class EstoqueServiceImpl implements EstoqueService {
 
     private final EstoqueRepository estoqueRepository;
