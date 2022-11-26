@@ -28,7 +28,7 @@ public class Estoque implements Serializable {
     @Column(name = "nm_local_estoque")
     private String nomeLocalEstoque;
 
-    @OneToMany(mappedBy ="estoque")
+    @OneToMany(mappedBy ="estoque",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Produto> produtos;
 
 

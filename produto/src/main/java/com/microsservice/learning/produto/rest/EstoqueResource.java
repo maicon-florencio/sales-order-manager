@@ -2,7 +2,6 @@ package com.microsservice.learning.produto.rest;
 
 import com.microsservice.learning.produto.service.EstoqueService;
 import com.microsservice.learning.produto.service.dto.EstoqueDTO;
-import com.microsservice.learning.produto.service.dto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

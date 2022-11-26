@@ -1,5 +1,6 @@
 package com.microsservice.learning.produto.service.impl;
 
+import com.microsservice.learning.produto.dominio.Estoque;
 import com.microsservice.learning.produto.dominio.Produto;
 import com.microsservice.learning.produto.exception.BussinessException;
 import com.microsservice.learning.produto.service.ProdutoService;
@@ -31,6 +32,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     public ProdutoDTO save(ProdutoDTO dto) {
         if(existsProduto(produtoMapper.toEntity(dto)))
             throw new BussinessException("Exists Produto");
+        dto.setEstoque(new Estoque());
         var produto = produtoDAO.save(produtoMapper.toEntity(dto));
 
         return produtoMapper.toDTO(produto);
@@ -46,9 +48,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoDTO getById(Long id) {
-        var dtoEncontrado = produtoMapper.toDTO(produtoDAO.getById(Objects.requireNonNull(id)));
+        var dtoEncontrado = produtoDAO.getById(Objects.requireNonNull(id));
         if(dtoEncontrado == null) throw new IllegalArgumentException("Produto não encontrado");
-        return dtoEncontrado;
+        return produtoMapper.toDTO(dtoEncontrado);
 
     }
 

@@ -1,5 +1,6 @@
 package com.microsservice.learning.produto.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +25,8 @@ public class Produto implements Serializable {
     private float price;
     private String description;
     private String statusP;
-
-    @ManyToOne(cascade = CascadeType.ALL, optional = true)
+    @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name = "estoque_id",referencedColumnName = "id")
     private Estoque estoque;
 

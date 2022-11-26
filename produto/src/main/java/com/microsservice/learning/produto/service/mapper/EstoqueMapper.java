@@ -17,6 +17,7 @@ public interface EstoqueMapper {
 
     @Mapping(source = "entity.quantidadeProdutoEstoque",target = "quantidadeProdutoEstoque")
     @Mapping(source = "entity.statusPermissaoVenda",target = "statusPermissaoVenda")
+    @Mapping(source = "entity.nomeLocalEstoque",target = "nomeLocalEstoque")
     @Mapping(source= "entity.produtos",target = "produtosOrder")
     EstoqueDTO entityToDTO(Estoque entity);
 

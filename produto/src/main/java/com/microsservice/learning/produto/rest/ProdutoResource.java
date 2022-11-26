@@ -26,7 +26,7 @@ public class ProdutoResource {
 
     @PutMapping
     public ResponseEntity<ProdutoDTO> atualizarProduto(@RequestBody ProdutoDTO pDTO){
-        return ResponseEntity.ok(produtoService.save(pDTO));
+        return ResponseEntity.ok(produtoService.udpate(pDTO));
     }
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> buscarProdutoId(@PathVariable("id") Long id){
