@@ -49,8 +49,9 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ProdutoDTO getById(Long id) {
-        var dtoEncontrado = produtoDAO.getById(Objects.requireNonNull(id));
+        var dtoEncontrado = produtoDAO.getReferenceById(Objects.requireNonNull(id));
         if(dtoEncontrado == null) throw new IllegalArgumentException("Produto não encontrado");
         return produtoMapper.toDTO(dtoEncontrado);
 
@@ -66,11 +67,13 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProdutoDTO> listAll() {
         return produtoMapper.toDtos(produtoDAO.findAll());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<ProdutoDTO> listPagina(Pageable paginacao) {
         return produtoDAO.findAll(paginacao).map(produtoMapper::toDTO);
     }
