@@ -42,7 +42,7 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public EstoqueDTO getById(Long id) {
-        var estEntity= estoqueMapper.entityToDTO(estoqueRepository.getById(Objects.requireNonNull(id)));
+        var estEntity= estoqueMapper.entityToDTO(estoqueRepository.getReferenceById(Objects.requireNonNull(id)));
         if(Objects.isNull(estEntity)) throw new BussinessException("Resource not found");
         return estEntity;
     }
